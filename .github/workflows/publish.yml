@@ -38,6 +38,7 @@ jobs:
       env:
         GOOS: ${{ matrix.goos }}
         GOARCH: ${{ matrix.goarch }}
+        DOCKER_DEFAULT_PLATFORM: ${{ matrix.goos }}/${{ matrix.goarch }}
       run: |
           make docker-images
           docker push ghcr.io/masterevarior/prometheus-plex-exporter:latest
