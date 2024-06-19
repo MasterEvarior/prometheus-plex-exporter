@@ -19,10 +19,6 @@ jobs:
             goarch: amd64
           - goos: linux
             goarch: arm64
-          - goos: linux
-            goarch: arm/v6
-          - goos: linux
-            goarch: arm/v7
     steps:
     - uses: actions/checkout@v3
 
@@ -49,6 +45,7 @@ jobs:
         GOARCH: ${{ matrix.goarch }}
       run: |
           make docker-images
+          docker images
           docker push ghcr.io/masterevarior/prometheus-plex-exporter:latest
       
       
