@@ -19,6 +19,10 @@ jobs:
             goarch: amd64
           - goos: linux
             goarch: arm64
+          - goos: linux
+            goarch: arm/v6
+          - goos: linux
+            goarch: arm/v7
     steps:
     - uses: actions/checkout@v3
 
