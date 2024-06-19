@@ -21,7 +21,7 @@ run:
 
 .PHONY: prometheus-plex-exporter
 prometheus-plex-exporter:
-	CGO_ENABLED=0 go build $(GO_OPT) -o ./bin/$(GOOS)/prometheus-plex-exporter ./cmd/prometheus-plex-exporter
+	CGO_ENABLED=0 go build $(GO_OPT) -o ./bin/$(GOOS)/prometheus-plex-exporter-$(GOARCH) ./cmd/prometheus-plex-exporter
 
 .PHONY: exe
 exe:
@@ -32,8 +32,8 @@ exe:
 .PHONY: docker-component # Not intended to be used directly
 docker-component: check-component exe
 	docker buildx build -t masterevarior/$(COMPONENT) --build-arg=TARGETARCH=$(GOARCH) --platform $(GOOS)/$(GOARCH) -f ./cmd/$(COMPONENT)/Dockerfile .
-	docker tag masterevarior/$(COMPONENT) $(COMPONENT)
-	docker tag masterevarior/$(COMPONENT) ghcr.io/masterevarior/$(COMPONENT)
+	docker tag masterevarior/$(COMPONENT)-$(GOARCH) $(COMPONENT)
+	docker tag masterevarior/$(COMPONENT)-$(GOARCH) ghcr.io/masterevarior/$(COMPONENT)
 
 .PHONY: docker-prometheus-plex-exporter
 docker-prometheus-plex-exporter:
