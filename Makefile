@@ -21,7 +21,7 @@ run:
 
 .PHONY: prometheus-plex-exporter
 prometheus-plex-exporter:
-	CGO_ENABLED=0 go build $(GO_OPT) -o ./bin/$(GOOS)/prometheus-plex-exporter-$(GOARCH) ./cmd/prometheus-plex-exporter
+	CGO_ENABLED=0 go build $(GO_OPT) -o ./bin/$(GOOS)/prometheus-plex-exporter ./cmd/prometheus-plex-exporter
 
 .PHONY: exe
 exe:
