@@ -40,6 +40,6 @@ jobs:
         GOARCH: ${{ matrix.goarch }}
       run: |
           make docker-images
-          docker push ghcr.io/MasterEvarior/prometheus-plex-exporter:latest
+          docker push ghcr.io/masterevarior/prometheus-plex-exporter:latest
       
       
