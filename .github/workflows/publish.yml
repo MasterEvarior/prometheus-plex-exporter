@@ -11,6 +11,14 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - goos: linux
+            goarch: amd64
+          - goos: linux
+            goarch: arm64
     steps:
     - uses: actions/checkout@v3
 
@@ -27,8 +35,11 @@ jobs:
         password: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Build and publish
+      env:
+        GOOS: ${{ matrix.goos }}
+        GOARCH: ${{ matrix.goarch }}
       run: |
           make docker-images
-          docker push ghcr.io/MasterEvarior/prometheus-plex-exporter:latest
+          docker push --platform ${{ matrix.goos }}/${{ matrix.goarch }} ghcr.io/MasterEvarior/prometheus-plex-exporter:latest
       
       
