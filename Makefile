@@ -32,8 +32,8 @@ exe:
 .PHONY: docker-component # Not intended to be used directly
 docker-component: check-component exe
 	docker buildx build -t masterevarior/$(COMPONENT)-$(GOARCH) --build-arg=TARGETARCH=$(GOARCH) --platform $(GOOS)/$(GOARCH) -f ./cmd/$(COMPONENT)/Dockerfile .
-	# docker tag masterevarior/$(COMPONENT)-$(GOARCH) $(COMPONENT)
-	# docker tag masterevarior/$(COMPONENT)-$(GOARCH) ghcr.io/masterevarior/$(COMPONENT)-$(GOARCH)
+	docker tag masterevarior/$(COMPONENT)-$(GOARCH) $(COMPONENT)
+	docker tag masterevarior/$(COMPONENT)-$(GOARCH) ghcr.io/masterevarior/$(COMPONENT)-$(GOARCH)
 
 .PHONY: docker-prometheus-plex-exporter
 docker-prometheus-plex-exporter:
