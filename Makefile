@@ -31,7 +31,7 @@ exe:
 
 .PHONY: docker-component # Not intended to be used directly
 docker-component: check-component exe
-	docker buildx build -t masterevarior/$(COMPONENT) --build-arg=TARGETARCH=$(GOARCH) --platform $(GOOS)/$(GOARCH) -f ./cmd/$(COMPONENT)/Dockerfile . --push
+	docker buildx build -t masterevarior/$(COMPONENT) --build-arg=TARGETARCH=$(GOARCH) --platform $(GOOS)/$(GOARCH) -f ./cmd/$(COMPONENT)/Dockerfile . --load
 	docker images
 	docker tag masterevarior/$(COMPONENT) $(COMPONENT)
 	docker tag masterevarior/$(COMPONENT) ghcr.io/masterevarior/$(COMPONENT)
